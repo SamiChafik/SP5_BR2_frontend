@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <h2>Gérer les Catégories</h2>
+    
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">{{ isEditing ? 'Modifier la Catégorie' : 'Ajouter une Nouvelle Catégorie' }}</h5>
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="name" formControlName="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" formControlName="description" rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary me-2" [disabled]="categoryForm.invalid">
+            {{ isEditing ? 'Mettre à jour' : 'Enregistrer' }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()" *ngIf="isEditing">Annuler</button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Liste des Catégories</h5>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categories">
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning me-2" (click)="onEdit(category)">Modifier</button>
+                  <button class="btn btn-sm btn-danger" (click)="onDelete(category.id)">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
