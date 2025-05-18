@@ -11,7 +11,7 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  saveTransaction(transactionData: any) {
+  createTransaction(transactionData: any) {
     return this.http.post(this.apiUrl, transactionData);
   }
 
@@ -19,12 +19,12 @@ export class TransactionService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  getTransaction(id: string): Observable<any> {
+  getTransaction(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  updateTransaction(id: string, recipe: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, recipe);
+  updateTransaction(id: number, transactionData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, transactionData);
   }
 
   deleteTransaction(id: number): Observable<any> {
