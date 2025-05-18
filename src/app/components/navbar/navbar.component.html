@@ -1,1 +1,11 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">Budget Manager</a>
+      <div class="d-flex nav-links">
+        <a class="nav-link" (click)="navigateTo('home')" routerLinkActive="active">Home</a>
+        <a class="nav-link" (click)="navigateTo('transactions')" routerLinkActive="active">Transactions</a>
+        <a class="nav-link" (click)="navigateTo('budget')" routerLinkActive="active">Budget</a>
+        <a class="nav-link" (click)="navigateTo('categories')" routerLinkActive="active">Categories</a>
+      </div>
+    </div>
+  </nav>
