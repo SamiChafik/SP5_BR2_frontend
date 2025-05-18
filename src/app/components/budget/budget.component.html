@@ -1,0 +1,66 @@
+<div class="container mt-4">
+    <h2>Gérer les Budgets</h2>
+    
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Ajouter un Nouveau Budget</h5>
+        <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="category" class="form-label">Catégorie</label>
+                <select class="form-select" id="categoryId" formControlName="category" required>
+                  <option value="">Sélectionner une catégorie</option>
+                  <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                </select>
+            </div>  
+          <div class="mb-3">
+            <label for="limitAmount" class="form-label">Montant Limite</label>
+            <input type="number" class="form-control" 
+                   id="limitAmount" formControlName="limitAmount" required>
+          </div>
+          <div class="mb-3">
+            <label for="spentAmount" class="form-label">Montant dépensé</label>
+            <input type="number" class="form-control" 
+                   id="spentAmount" formControlName="spentAmount" required>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" 
+                  [disabled]="budgetForm.invalid">
+            Ajouter Budget
+          </button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Budgets Actuels</h5>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Catégorie</th>
+                <th>Montant Limite</th>
+                <th>Montant Dépensé</th>
+                <th>Reste</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let budget of budgets">
+                <td>{{ budget.category }}</td>
+                <td>{{ budget.limitAmount | currency:'MAD ' }}</td>
+                <td>{{ budget.spentAmount | currency:'MAD ' }}</td>
+                <td [class.positive-remaining]="(budget.limitAmount - budget.spentAmount) >= 0"
+                    [class.negative-remaining]="(budget.limitAmount - budget.spentAmount) < 0">
+                  {{ budget.limitAmount - budget.spentAmount | currency:'MAD ' }}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger" (click)="onDelete(budget.id)">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

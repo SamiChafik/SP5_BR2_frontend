@@ -1,0 +1,32 @@
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    background: rgba(30, 30, 30, 0.379);
+    backdrop-filter: blur(10px);
+
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+
+    color: white;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .positive-remaining {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .negative-remaining {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
